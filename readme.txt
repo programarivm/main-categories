@@ -15,10 +15,10 @@ Easily designates a main category for posts.
 
 == Installation ==
 
-1. Upload the `main-categories` folder to the '/wp-content/plugins/' directory
-2. Activate the plugin through the 'Plugins' menu
+1. Upload the `main-categories` folder to the `/wp-content/plugins/` directory
+2. Activate the plugin through the **Plugins** menu
 3. Edit a post and assign a main category to it
-4. Go to Appearance -> Widgets and set up the Main Category widget
+4. Go to **Appearance** -> **Widgets** and set up the **Main Categories** widget
 5. Browse the main categories on your site's frontend
 
 == Changelog ==
