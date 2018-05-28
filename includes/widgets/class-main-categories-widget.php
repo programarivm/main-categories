@@ -83,6 +83,8 @@ class Main_Categories_Widget extends WP_Widget
 	 */
 	public function form( $instance ) {
 		$title = sanitize_text_field( $instance['title'] );
+		$dropdown = isset( $instance['dropdown'] ) ? (bool) $instance['dropdown'] : false;
+		$count = isset($instance['count']) ? (bool) $instance['count'] :false;
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title:' ); ?></label>
