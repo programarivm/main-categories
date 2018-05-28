@@ -7,6 +7,9 @@
  */
 class Main_Categories_Widget extends WP_Widget
 {
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		$widget_ops = array(
 			'classname' => 'widget_categories',
@@ -17,6 +20,12 @@ class Main_Categories_Widget extends WP_Widget
 		parent::__construct( 'main_categories_widget', __( 'Main Categories' ), $widget_ops );
 	}
 
+	/**
+	 * Outputs the content to be displayed on the front end.
+	 *
+	 * @param array $args Display arguments.
+	 * @param array $instance Settings for the current Categories widget instance.
+	 */
 	public function widget( $args, $instance ) {
 		$title = ! empty( $instance['title'] ) ? $instance['title'] : __( 'Main Categories' );
 		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
@@ -51,6 +60,13 @@ class Main_Categories_Widget extends WP_Widget
 		echo $args['after_widget'];
 	}
 
+	/**
+	 * Handles updating settings for the current Plugin_Name_Widget instance.
+	 *
+	 * @param array $new_instance New settings for this instance.
+	 * @param array $old_instance Old settings for this instance.
+	 * @return array Updated settings to save.
+	 */
 	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		$instance['title'] = sanitize_text_field( $new_instance['title'] );
@@ -60,6 +76,11 @@ class Main_Categories_Widget extends WP_Widget
 		return $instance;
 	}
 
+	/**
+	 * Outputs the settings form in the WordPress admin area.
+	 *
+	 * @param array $instance Current settings.
+	 */
 	public function form( $instance ) {
 		$title = sanitize_text_field( $instance['title'] );
 		?>
@@ -77,6 +98,11 @@ class Main_Categories_Widget extends WP_Widget
 		<?php
 	}
 
+	/**
+	 * Gets the main categories.
+	 *
+	 * @return array|object|null Database query results.
+	 */
 	private function get_main_categories() {
 		global $wpdb;
 
@@ -91,6 +117,11 @@ class Main_Categories_Widget extends WP_Widget
 		return $main_categories;
 	}
 
+	/**
+	 * Gets a dropdown of categories.
+	 *
+	 * @return string Dropdown of categories.
+	 */
 	private function dropdown_categories(array $args) {
 		$categories = $this->get_main_categories();
 
@@ -107,6 +138,11 @@ class Main_Categories_Widget extends WP_Widget
 		return $output;
 	}
 
+	/**
+	 * Gets a list of categories.
+	 *
+	 * @return string List of categories.
+	 */
 	private function ul_categories(array $args) {
 		$categories = $this->get_main_categories();
 
