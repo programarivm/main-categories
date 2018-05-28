@@ -81,10 +81,11 @@ class Main_Categories_Widget extends WP_Widget
 		global $wpdb;
 
 		$main_categories = $wpdb->get_results("SELECT t.name AS term_name, p.meta_value AS term_id, COUNT(p.meta_value) AS count
-			FROM $wpdb->postmeta AS p
-			JOIN $wpdb->terms t ON p.meta_value=t.term_id
+			FROM {$wpdb->prefix}postmeta AS p
+			JOIN {$wpdb->prefix}terms t ON p.meta_value=t.term_id
 			WHERE p.meta_key='main_category_id'
-			GROUP BY p.meta_value"
+			GROUP BY p.meta_value
+			ORDER BY count DESC"
 		);
 
 		return $main_categories;
