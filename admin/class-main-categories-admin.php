@@ -5,23 +5,48 @@
  */
 class Main_Categories_Admin
 {
+	/**
+	 * The plugin's name.
+	 *
+	 * @var string $plugin_name The plugin's name.
+	 */
 	private $plugin_name;
 
+	/**
+	 * The plugin's version.
+	 *
+	 * @var string $plugin_name The plugin's version.
+	 */
 	private $version;
 
+	/**
+	 * Constructor.
+	 *
+	 * @param string $plugin_name The plugin's name.
+	 * @param string $version The plugin's version.
+	 */
     public function __construct( $plugin_name, $version ) {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 	}
 
+	/**
+	 * Registers the stylesheets for the admin area.
+	 */
 	public function enqueue_styles() {
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/main-categories-admin.css', array(), $this->version, 'all' );
 	}
 
+	/**
+	 * Registers the JavaScript for the admin area.
+	 */
 	public function enqueue_scripts() {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/main-categories-admin.js', array( 'jquery' ), $this->version, false );
 	}
 
+	/**
+	 * Adds a meta box for the main category.
+	 */
 	public function add_main_category_meta_box() {
 	    add_meta_box(
 	        'main_category_id',
@@ -55,6 +80,9 @@ class Main_Categories_Admin
 	    );
 	}
 
+	/**
+	 * Saves the main_category_id meta key into the postmeta table.
+	 */
 	public function save_postdata( $post_id ) {
 	    if ( ! empty( $_POST['main_category_ID'] ) ) {
 	        $post_categories = array_merge( wp_get_post_categories( $post_id ), [ $_POST['main_category_ID'] ] );

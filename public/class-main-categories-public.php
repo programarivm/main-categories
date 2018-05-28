@@ -5,24 +5,52 @@
  */
 class Main_Categories_Public
 {
+	/**
+	 * The plugin's name.
+	 *
+	 * @var string $plugin_name The plugin's name.
+	 */
 	private $plugin_name;
 
+	/**
+	 * The plugin's version.
+	 *
+	 * @var string $plugin_name The plugin's version.
+	 */
 	private $version;
 
+	/**
+	 * Constructor.
+	 *
+	 * @param string $plugin_name The plugin's name.
+	 * @param string $version The plugin's version.
+	 */
 	public function __construct( $plugin_name, $version ) {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 	}
 
+	/**
+	 * Register the stylesheets for the public-facing side of the site.
+	 */
 	public function enqueue_styles() {
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/main-categories-public.css', array(), $this->version, 'all' );
 	}
 
+	/**
+	 * Registers the JavaScript for the public-facing side of the site.
+	 */
 	public function enqueue_scripts() {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/main-categories-public.js', array( 'jquery' ), $this->version, false );
 		$this->localize_scripts();
 	}
 
+	/**
+	 * Gets the posts by main category.
+	 *
+	 * @param array $posts All posts.
+	 * @return array The posts filtered by main category.
+	 */
 	public function get_posts_by_main_category( $posts ) {
 	    if ( isset($_REQUEST['main-cat']) ) {
 	        $result = [];

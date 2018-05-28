@@ -6,40 +6,33 @@
 class Main_Categories_Includes {
 
 	/**
-	 * The ID of this plugin.
+	 * The plugin's name.
 	 *
-	 * @since	1.0.0
-	 * @access	private
-	 * @var		string		$plugin_name	The ID of this plugin.
+	 * @var string $plugin_name The plugin's name.
 	 */
 	private $plugin_name;
 
 	/**
-	 * The version of this plugin.
+	 * The plugin's version.
 	 *
-	 * @since 	1.0.0
-	 * @access 	private
-	 * @var		string		$version		The current version of this plugin.
+	 * @var string $plugin_name The plugin's version.
 	 */
 	private $version;
 
 	/**
-	 * The widgets of this plugin.
+	 * The plugin's widgets.
 	 *
-	 * @since 	1.0.0
-	 * @access 	private
-	 * @var		array		$widgets		The widgets of this plugin.
+	 * @var array $widgets The plugin's widgets.
 	 */
 	private $widgets = array (
 		'Main_Categories_Widget',
 	);
 
 	/**
-	 * Initialize the class and set its properties.
+	 * Constructor.
 	 *
-	 * @since 	1.0.0
-	 * @param	string		$plugin_name	The name of this plugin.
-	 * @param	string		$version		The version of this plugin.
+	 * @param string $plugin_name The plugin's name.
+	 * @param string $version The plugin's version.
 	 */
 	public function __construct( $plugin_name, $version ) {
 		$this->plugin_name = $plugin_name;
@@ -49,11 +42,8 @@ class Main_Categories_Includes {
 	/**
 	 * Registers this plugin's widgets.
 	 *
-	 * @since	1.0.0
-	 * @access	public
 	 */
 	public function register_widgets() {
 		array_walk( $this->widgets, 'register_widget' );
 	}
-
 }

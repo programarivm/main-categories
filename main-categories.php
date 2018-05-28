@@ -2,7 +2,7 @@
 /*
 Plugin Name: Main Categories
 Plugin URI: https://programarivm.com/
-Description: Allows to designate a main category for posts.
+Description: Easily designates a main category for posts.
 Author: Jordi Bassagañas
 Author URI: https://programarivm.com/
 Text Domain: main-categories
