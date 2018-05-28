@@ -19,7 +19,7 @@ class Main_Categories
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'main-categories';
+		$this->plugin_name = 'programarivm-main-categories';
 
 		$this->load_dependencies();
 		$this->define_admin_hooks();
@@ -43,7 +43,7 @@ class Main_Categories
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_main_category_meta_box');
-		$this->loader->add_action( 'save_post', $plugin_admin, 'save_postdata');
+		$this->loader->add_action( 'save_post', $plugin_admin, 'save_main_category');
 	}
 
 	private function define_includes_hooks() {

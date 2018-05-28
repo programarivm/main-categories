@@ -66,11 +66,13 @@ class Main_Categories_Public
 	    }
 	}
 
+	/**
+	 * Localizes registered scripts with data for JavaScript variables. 
+	 */
 	private function localize_scripts() {
 		$data = array(
 			'dropdown_id' => 'main-cat'
 		);
-
 		wp_localize_script( $this->plugin_name, 'Main_Categories_Widget', $data );
 	}
 }

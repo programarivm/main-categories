@@ -49,7 +49,7 @@ class Main_Categories_Admin
 	 */
 	public function add_main_category_meta_box() {
 	    add_meta_box(
-	        'main_category_id',
+	        $this->plugin_name,
 	        __( 'Main Category', 'main_category' ),
 			function ($post) {
 				$args = array(
@@ -61,13 +61,13 @@ class Main_Categories_Admin
 				$categories = get_categories( $args );
 				$category_id = get_post_meta( $post->ID, 'main_category_id', true );
 				?>
-				<select name="main_category_ID" class="postbox">
+				<select name="<?php echo $this->plugin_name ?>" class="postbox">
 					<option value="">None</option>
 					<?php
 					foreach ( $categories as $category ) {
 						$category->cat_ID == $category_id ? $selected = 'selected' : $selected = '';
 						?>
-						<option value="<?php echo $category->cat_ID?>" <?php echo $selected ?>><?php echo $category->name?></option>
+						<option value="<?php echo $category->cat_ID ?>" <?php echo $selected ?>><?php echo $category->name?></option>
 					<?php
 					}
 					?>
@@ -83,12 +83,12 @@ class Main_Categories_Admin
 	/**
 	 * Saves the main_category_id meta key into the postmeta table.
 	 */
-	public function save_postdata( $post_id ) {
-	    if ( ! empty( $_POST['main_category_ID'] ) ) {
-	        $post_categories = array_merge( wp_get_post_categories( $post_id ), [ $_POST['main_category_ID'] ] );
+	public function save_main_category( $post_id ) {
+	    if ( ! empty( $_POST[ $this->plugin_name ] ) ) {
+	        $post_categories = array_merge( wp_get_post_categories( $post_id ), [ $_POST[ $this->plugin_name ] ] );
 	        $post_categories = array_map( 'intval', $post_categories );
 	        $term_taxonomy_ids = wp_set_object_terms( $post_id, $post_categories, 'category' );
-	        update_post_meta( $post_id, 'main_category_id', $_POST['main_category_ID'] );
+	        update_post_meta( $post_id, 'main_category_id', $_POST[ $this->plugin_name ] );
 	    } else {
 	        update_post_meta( $post_id, 'main_category_id', null );
 	    }
