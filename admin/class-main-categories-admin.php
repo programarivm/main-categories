@@ -48,36 +48,35 @@ class Main_Categories_Admin
 	 * Adds a meta box for the main category.
 	 */
 	public function add_main_category_meta_box() {
-	    add_meta_box(
-	        $this->plugin_name,
-	        __( 'Main Category', 'main_category' ),
+		add_meta_box(
+			$this->plugin_name,
+			__( 'Main Category', 'main_category' ),
 			function ($post) {
 				$args = array(
 					"hide_empty" => 0,
 					"orderby"   => "name",
 					"order"     => "ASC"
 				);
-
 				$categories = get_categories( $args );
 				$category_id = get_post_meta( $post->ID, 'programarivm_main_category_id', true );
 				?>
 				<select name="<?php echo $this->plugin_name ?>" class="postbox">
-					<option value="">None</option>
-					<?php
-					foreach ( $categories as $category ) {
-						$category->cat_ID == $category_id ? $selected = 'selected' : $selected = '';
-						?>
-						<option value="<?php echo $category->cat_ID ?>" <?php echo $selected ?>><?php echo $category->name?></option>
-					<?php
-					}
+				<option value="">None</option>
+				<?php
+				foreach ( $categories as $category ) {
+					$category->cat_ID == $category_id ? $selected = 'selected' : $selected = '';
 					?>
+					<option value="<?php echo $category->cat_ID ?>" <?php echo $selected ?>><?php echo $category->name?></option>
+					<?php
+				}
+				?>
 				</select>
 				<?php
 			},
-	        'post',
-	        'normal',
-	        'high'
-	    );
+			'post',
+			'normal',
+			'high'
+		);
 	}
 
 	/**
