@@ -83,15 +83,15 @@ class Main_Categories_Admin
 	 * Saves the programarivm_main_category_id meta key into the postmeta table.
 	 */
 	public function save_main_category( $post_id ) {
-	    if ( ! empty( $_POST[ $this->plugin_name ] ) ) {
+		if ( ! empty( $_POST[ $this->plugin_name ] ) ) {
 			if ( filter_var( $_POST[ $this->plugin_name ], FILTER_VALIDATE_INT ) ) {
-		        $post_categories = array_merge( wp_get_post_categories( $post_id ), [ $_POST[ $this->plugin_name ] ] );
-		        $post_categories = array_map( 'intval', $post_categories );
-		        $term_taxonomy_ids = wp_set_object_terms( $post_id, $post_categories, 'category' );
-		        update_post_meta( $post_id, 'programarivm_main_category_id', absint( $_POST[ $this->plugin_name ] ) );
+				$post_categories = array_merge( wp_get_post_categories( $post_id ), [ $_POST[ $this->plugin_name ] ] );
+				$post_categories = array_map( 'intval', $post_categories );
+				$term_taxonomy_ids = wp_set_object_terms( $post_id, $post_categories, 'category' );
+				update_post_meta( $post_id, 'programarivm_main_category_id', absint( $_POST[ $this->plugin_name ] ) );
 			}
-	    } else {
-	        update_post_meta( $post_id, 'programarivm_main_category_id', null );
-	    }
+		} else {
+		update_post_meta( $post_id, 'programarivm_main_category_id', null );
+		}
 	}
 }
