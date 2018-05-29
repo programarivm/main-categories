@@ -87,7 +87,7 @@ class Main_Categories_Admin
 	        $post_categories = array_merge( wp_get_post_categories( $post_id ), [ $_POST[ $this->plugin_name ] ] );
 	        $post_categories = array_map( 'intval', $post_categories );
 	        $term_taxonomy_ids = wp_set_object_terms( $post_id, $post_categories, 'category' );
-	        update_post_meta( $post_id, 'programarivm_main_category_id', $_POST[ $this->plugin_name ] );
+	        update_post_meta( $post_id, 'programarivm_main_category_id', sanitize_text_field( $_POST[ $this->plugin_name ] ) );
 	    } else {
 	        update_post_meta( $post_id, 'programarivm_main_category_id', null );
 	    }
