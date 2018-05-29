@@ -91,7 +91,7 @@ class Main_Categories_Admin
 				update_post_meta( $post_id, 'programarivm_main_category_id', absint( $_POST[ $this->plugin_name ] ) );
 			}
 		} else {
-		update_post_meta( $post_id, 'programarivm_main_category_id', null );
+			update_post_meta( $post_id, 'programarivm_main_category_id', null );
 		}
 	}
 }
