@@ -17,7 +17,7 @@ class Main_Categories_Widget extends WP_Widget
 			'customize_selective_refresh' => true,
 		);
 
-		parent::__construct( 'main_categories_widget', __( 'Main Categories' ), $widget_ops );
+		parent::__construct( 'programarivm_main_categories', __( 'Main Categories' ), $widget_ops );
 	}
 
 	/**
