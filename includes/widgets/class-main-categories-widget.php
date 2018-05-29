@@ -12,7 +12,7 @@ class Main_Categories_Widget extends WP_Widget
 	 */
 	public function __construct() {
 		$widget_ops = array(
-			'classname' => 'widget_categories',
+			'classname' => 'programarivm_main_categories',
 			'description' => __( 'A list or dropdown of the main categories.' ),
 			'customize_selective_refresh' => true,
 		);
