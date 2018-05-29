@@ -111,7 +111,7 @@ class Main_Categories_Widget extends WP_Widget
 		$main_categories = $wpdb->get_results("SELECT t.name AS term_name, p.meta_value AS term_id, COUNT(p.meta_value) AS count
 			FROM {$wpdb->prefix}postmeta AS p
 			JOIN {$wpdb->prefix}terms t ON p.meta_value=t.term_id
-			WHERE p.meta_key='main_category_id'
+			WHERE p.meta_key='programarivm_main_category_id'
 			GROUP BY p.meta_value
 			ORDER BY count DESC"
 		);

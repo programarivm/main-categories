@@ -55,7 +55,7 @@ class Main_Categories_Public
 	    if ( isset($_REQUEST['main-cat']) ) {
 	        $result = [];
 	        foreach ( $posts as $post ) {
-	            $category_id = get_post_meta( $post->ID, 'main_category_id', true );
+	            $category_id = get_post_meta( $post->ID, 'programarivm_main_category_id', true );
 	            if ( $category_id == $_REQUEST['main-cat'] ) {
 	                $result[] = $post;
 	            }

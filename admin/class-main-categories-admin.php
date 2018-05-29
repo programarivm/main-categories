@@ -59,7 +59,7 @@ class Main_Categories_Admin
 				);
 
 				$categories = get_categories( $args );
-				$category_id = get_post_meta( $post->ID, 'main_category_id', true );
+				$category_id = get_post_meta( $post->ID, 'programarivm_main_category_id', true );
 				?>
 				<select name="<?php echo $this->plugin_name ?>" class="postbox">
 					<option value="">None</option>
@@ -81,16 +81,16 @@ class Main_Categories_Admin
 	}
 
 	/**
-	 * Saves the main_category_id meta key into the postmeta table.
+	 * Saves the programarivm_main_category_id meta key into the postmeta table.
 	 */
 	public function save_main_category( $post_id ) {
 	    if ( ! empty( $_POST[ $this->plugin_name ] ) ) {
 	        $post_categories = array_merge( wp_get_post_categories( $post_id ), [ $_POST[ $this->plugin_name ] ] );
 	        $post_categories = array_map( 'intval', $post_categories );
 	        $term_taxonomy_ids = wp_set_object_terms( $post_id, $post_categories, 'category' );
-	        update_post_meta( $post_id, 'main_category_id', $_POST[ $this->plugin_name ] );
+	        update_post_meta( $post_id, 'programarivm_main_category_id', $_POST[ $this->plugin_name ] );
 	    } else {
-	        update_post_meta( $post_id, 'main_category_id', null );
+	        update_post_meta( $post_id, 'programarivm_main_category_id', null );
 	    }
 	}
 }
